@@ -1,0 +1,16 @@
+{
+  "name": "prsmith",
+  "version": "1.0.0",
+  "description": "Forge professional pull request review comments from simple prompts.",
+  "keywords": [],
+  "license": "MIT",
+  "author": "tarunyak",
+  "type": "commonjs",
+  "main": "index.js",
+  "bin": {
+    "prsmith": "bin/cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
