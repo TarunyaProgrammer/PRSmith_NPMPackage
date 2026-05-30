@@ -2,15 +2,26 @@
   "name": "prsmith",
   "version": "1.0.0",
   "description": "Forge professional pull request review comments from simple prompts.",
-  "keywords": [],
+  "keywords": [
+    "pull-request",
+    "code-review",
+    "github",
+    "cli",
+    "developer-tools"
+  ],
   "license": "MIT",
   "author": "tarunyak",
-  "type": "commonjs",
+  "type": "module",
   "main": "index.js",
   "bin": {
-    "prsmith": "bin/cli.js"
+    "prsmith": "./bin/cli.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node bin/cli.js"
+  },
+  "dependencies": {
+    "chalk": "^5.6.2",
+    "commander": "^15.0.0",
+    "inquirer": "^14.0.1"
   }
 }
