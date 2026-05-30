@@ -1,6 +1,6 @@
 {
   "name": "prsmith",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Forge professional pull request review comments from simple prompts.",
   "keywords": [
     "pull-request",
