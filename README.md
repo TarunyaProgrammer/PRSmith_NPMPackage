@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![CI](https://img.shields.io/github/actions/workflow/status/TarunyaProgrammer/PRSmith_NPMPackage/ci.yml?branch=main&style=flat-square)](https://github.com/TarunyaProgrammer/PRSmith_NPMPackage/actions)
 
-Forge professional pull request review comments directly from the terminal. 
+Forge professional pull request review comments directly from the terminal.
 
 PRSmith streamlines the process of writing code reviews by providing an interactive prompt that generates consistently formatted, polite, and actionable Markdown comments.
 
@@ -46,6 +46,7 @@ prsmith
 ## Example Interaction
 
 **Input:**
+
 - Severity: `Critical`
 - Title: `Scope Issue`
 - Issue: `Utility functions are nested incorrectly.`
@@ -53,7 +54,6 @@ prsmith
 
 **Output:**
 
-```md
 ### Critical: Scope Issue
 
 The current implementation introduces a critical issue.
@@ -65,7 +65,6 @@ Utility functions are nested incorrectly.
 **Suggested Fix**
 
 Move them to module scope.
-```
 
 ## Development & Contribution
 
