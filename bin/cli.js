@@ -135,6 +135,19 @@ program
 
       // Post to GitHub if specified
       if (options.github || options.pr || options.repo) {
+        const token = config.githubToken || process.env.GITHUB_TOKEN;
+        if (!token) {
+          console.error(
+            chalk.red('\n❌ Error: GitHub Personal Access Token not found!')
+          );
+          console.error(
+            chalk.yellow(
+              "Please configure 'githubToken' in your local ~/.prsmith.json file or set the GITHUB_TOKEN environment variable.\n"
+            )
+          );
+          process.exit(1);
+        }
+
         const detectedRepo = detectGithubRepo();
         let owner = '';
         let repoName = '';

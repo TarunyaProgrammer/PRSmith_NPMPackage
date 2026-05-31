@@ -113,6 +113,19 @@ export async function runBatchReview(config = {}) {
         console.error(chalk.red(`Failed to write file: ${err.message}`));
       }
     } else if (action.includes('Post')) {
+      const token = config.githubToken || process.env.GITHUB_TOKEN;
+      if (!token) {
+        console.log(
+          chalk.red('\n❌ Error: GitHub Personal Access Token not found!')
+        );
+        console.log(
+          chalk.yellow(
+            "Please configure 'githubToken' in your local ~/.prsmith.json file or set the GITHUB_TOKEN environment variable.\n"
+          )
+        );
+        continue;
+      }
+
       const repo = config.githubRepo || detectGithubRepo();
       const defaultOwner = repo ? repo.owner : '';
       const defaultRepo = repo ? repo.repo : '';
