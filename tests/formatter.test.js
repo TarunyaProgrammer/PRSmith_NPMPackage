@@ -29,4 +29,23 @@ describe("formatter.js", () => {
     const markdown = generateMarkdown(data);
     expect(markdown).toContain("The current implementation requires attention.");
   });
+
+  it("should use custom templates when passed via config", () => {
+    const data = {
+      severity: "Nitpick",
+      title: "Formatting",
+      issue: "Indentation is off.",
+      fix: "Fix indentation."
+    };
+
+    const config = {
+      templates: {
+        Nitpick: "This is a tiny nitpick."
+      }
+    };
+
+    const markdown = generateMarkdown(data, config);
+    expect(markdown).toContain("### Nitpick: Formatting");
+    expect(markdown).toContain("This is a tiny nitpick.");
+  });
 });

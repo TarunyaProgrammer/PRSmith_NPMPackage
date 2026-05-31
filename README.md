@@ -45,30 +45,53 @@ Install globally to use it anywhere on your machine.
 npm install -g prsmith
 ```
 
-## Features
+## ✨ Advanced Features (v1.1.0)
 
-- **Interactive Prompts:** No need to memorize complex flags. Just run the tool and answer the prompts.
-- **Smart Formatting:** Automatically generates perfectly structured Markdown.
-- **Graceful Exits:** Hit `Ctrl+C` anytime to exit safely without stack traces.
-- **Built-in Help:** Run `prsmith --help` to view documentation directly in your terminal.
+- **Interactive Editor Prompts:** For multi-line issues, PRSmith temporarily opens your system's default `$EDITOR` (like VS Code or Vim) so you can type formatted text seamlessly.
+- **Auto-Clipboard:** No need to manually highlight terminal output! The generated markdown is automatically copied to your clipboard.
+- **Bypass Prompts:** Skip the interactive flow completely by using CLI arguments (perfect for scripting).
+- **File Output:** Directly write the output to a `.md` file using the `--out` flag.
+- **Custom Templates:** Create a `.prsmith.json` file in your project or home directory to define your own severity levels and custom intro messages.
 
-## Usage
+## 💻 Usage
 
-### Standard Mode
+### Interactive Mode
 The primary way to use PRSmith is via its interactive mode. Simply run:
 
 ```bash
 prsmith
 ```
-This will launch the interactive prompt asking for Severity, Title, Issue, and Fix.
+This will launch the interactive prompt. When asked to describe the issue or fix, your default terminal editor will launch, allowing you to write multi-line markdown!
 
-### Commands & Flags
+### Non-Interactive Flags
 
-| Command | Description |
-| :--- | :--- |
-| `prsmith` | Launch the interactive generator |
-| `prsmith -h`, `--help` | Display the help menu and commands |
-| `prsmith -v`, `--version` | Print the current installed version |
+You can bypass the prompts entirely:
+
+```bash
+prsmith -s Critical -t "Memory Leak" -i "Connection left open." -f "Add a finally block." -o review.md
+```
+
+| Flag | Full | Description |
+| :--- | :--- | :--- |
+| `-s` | `--severity` | Severity level (e.g., Critical, Minor) |
+| `-t` | `--title` | The review title |
+| `-i` | `--issue` | Description of the problem |
+| `-f` | `--fix` | Suggested solution |
+| `-o` | `--out` | Save generated markdown to a specific file |
+
+### Configuration (`.prsmith.json`)
+
+You can define custom templates by creating a `.prsmith.json` in your home directory (`~/`) or current working directory:
+
+```json
+{
+  "templates": {
+    "Nitpick": "This is just a tiny nitpick, no pressure to fix.",
+    "Security": "CRITICAL SECURITY VULNERABILITY DETECTED."
+  }
+}
+```
+If you pass `-s Nitpick` (or select it in the CLI), PRSmith will automatically use your custom text!
 
 <details>
 <summary><b>Click to view an Example Interaction</b></summary>

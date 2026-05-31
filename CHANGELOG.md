@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.0] - 2026-06-01
+
+### Added
+- **Clipboard Integration**: Automatically copies the generated markdown to your clipboard (`clipboardy`).
+- **Editor Prompts**: The `issue` and `fix` interactive prompts now intelligently launch your default system `$EDITOR` (e.g. VS Code, vim) for a seamless multi-line typing experience.
+- **CLI Arguments**: You can completely bypass the interactive mode by supplying flags: `-s`, `-t`, `-i`, `-f`.
+- **File Output**: Use the `-o` or `--out` flag to directly write the markdown to a file (e.g. `prsmith --out comment.md`).
+- **Update Notifier**: The CLI now checks for updates in the background and notifies you if a newer version is available on NPM.
+- **Custom Configs**: Support for `.prsmith.json` files in your home directory (`~/`) or project directory. Define your own custom severities and intro templates!
+
 ## [1.0.2] - 2026-05-31
 
 ### Added

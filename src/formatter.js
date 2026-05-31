@@ -1,8 +1,9 @@
-import { templates } from "./templates.js";
+import { templates as defaultTemplates } from "./templates.js";
 
-export function generateMarkdown(data) {
+export function generateMarkdown(data, config = {}) {
+  const mergedTemplates = { ...defaultTemplates, ...(config.templates || {}) };
   const intro =
-    templates[data.severity] ||
+    mergedTemplates[data.severity] ||
     "The current implementation requires attention.";
 
   return `### ${data.severity}: ${data.title}
