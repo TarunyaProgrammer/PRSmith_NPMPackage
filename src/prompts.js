@@ -35,7 +35,8 @@ export async function getReviewData(options = {}, config = {}) {
     coreQuestions.push({
       type: 'editor',
       name: 'issue',
-      message: 'Describe the issue:',
+      message:
+        'Describe the issue (Vim: i to write, Esc then :wq to save & exit. Nano: Ctrl+O, Enter, Ctrl+X):',
     });
   }
 
@@ -43,7 +44,8 @@ export async function getReviewData(options = {}, config = {}) {
     coreQuestions.push({
       type: 'editor',
       name: 'fix',
-      message: 'Suggested fix:',
+      message:
+        'Suggested fix (Vim: i to write, Esc then :wq to save & exit. Nano: Ctrl+O, Enter, Ctrl+X):',
     });
   }
 
@@ -102,12 +104,14 @@ export async function getReviewData(options = {}, config = {}) {
         {
           type: 'editor',
           name: 'before',
-          message: 'Original Code (Before):',
+          message:
+            'Original Code (Before) (Vim: i to write, Esc then :wq to save & exit. Nano: Ctrl+O, Enter, Ctrl+X):',
         },
         {
           type: 'editor',
           name: 'after',
-          message: 'Proposed Code (After):',
+          message:
+            'Proposed Code (After) (Vim: i to write, Esc then :wq to save & exit. Nano: Ctrl+O, Enter, Ctrl+X):',
         },
       ]);
     }
