@@ -3,6 +3,7 @@ import fs from 'fs';
 import { generateMarkdown } from '../src/formatter.js';
 import { detectGithubRepo } from '../src/github.js';
 import { polishText } from '../src/ai.js';
+import { loadConfig } from '../src/config.js';
 
 describe('v2.0.0 Features Test Suite', () => {
   let existsSyncSpy;
@@ -205,6 +206,48 @@ describe('v2.0.0 Features Test Suite', () => {
           }),
         })
       );
+    });
+  });
+
+  describe('Editor Config Guardrails', () => {
+    it('should dynamically set process.env.EDITOR to nano on non-windows systems if not defined', () => {
+      const originalPlatform = Object.getOwnPropertyDescriptor(
+        process,
+        'platform'
+      );
+      const originalEditor = process.env.EDITOR;
+      const originalVisual = process.env.VISUAL;
+
+      delete process.env.EDITOR;
+      delete process.env.VISUAL;
+
+      Object.defineProperty(process, 'platform', {
+        value: 'darwin',
+        configurable: true,
+      });
+
+      existsSyncSpy.mockReturnValue(false);
+
+      loadConfig();
+
+      expect(process.env.EDITOR).toBe('nano');
+
+      // Restore original state
+      Object.defineProperty(process, 'platform', originalPlatform);
+      if (originalEditor !== undefined) process.env.EDITOR = originalEditor;
+      if (originalVisual !== undefined) process.env.VISUAL = originalVisual;
+    });
+
+    it('should respect editor defined in config', () => {
+      const originalEditor = process.env.EDITOR;
+      existsSyncSpy.mockReturnValue(true);
+      readFileSyncSpy.mockReturnValue(JSON.stringify({ editor: 'vim-mock' }));
+
+      loadConfig();
+
+      expect(process.env.EDITOR).toBe('vim-mock');
+
+      if (originalEditor !== undefined) process.env.EDITOR = originalEditor;
     });
   });
 });
